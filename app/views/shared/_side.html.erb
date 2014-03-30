@@ -1,0 +1,13 @@
+<div class="sideregion">
+      <h2>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h2>
+      <br>
+      <ul class="nav nav-sidebar clear-all">
+      		<li><%= link_to "Main", main_path %></li>
+      		<li><%= link_to "Profile", edit_user_path(current_user)%></li>
+     		<li><%= link_to "Add a topic", compose_path %></li>
+      		
+          </ul>
+</div>

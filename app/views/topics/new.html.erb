@@ -1,0 +1,21 @@
+
+<% provide(:title, 'Add a topic') %>
+
+<%= render 'shared/side'%>
+<div class="mainregion">
+
+<div class="row">
+  <div class="span6">
+  <h1>Add a topic</h1>
+    <%= form_for(@topic) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, :placeholder => "Topic title" %> 
+      <%= f.text_area :content, :placeholder => "Post your comment here"  %>
+
+      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>

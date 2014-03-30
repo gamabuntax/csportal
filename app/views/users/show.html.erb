@@ -1,0 +1,12 @@
+<% provide(:title, @user.name) %>
+<%= render 'shared/side'%>
+
+<div class="mainregion">
+	<% if @user.topics.any? %>
+	<h1> Your topics (<%= @user.topics.count %>) </h1>
+	<ol class ="topic">
+	<%=render @topics %>
+	</ol>
+	<%= will_paginate @topics %>
+	<% end %>
+</div>
