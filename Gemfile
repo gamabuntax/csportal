@@ -8,8 +8,11 @@ gem 'sprockets', '2.11.0'
 gem 'will_paginate', '3.0.4'
 gem 'bcrypt-ruby', '3.1.2'
 
+# Use mysql as the database for Active Record
+gem 'mysql2'
+
 group :development, :test do
-  gem 'sqlite3', '1.3.8'
+  #gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
 end
 
