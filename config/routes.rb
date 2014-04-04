@@ -2,6 +2,7 @@ CSPortal::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :topics
+  resources :comments
   root 'home#index'
 
   match '/about', to: 'home#about', via: 'get'
@@ -10,7 +11,8 @@ CSPortal::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/compose', to: 'topics#new', via: 'get'
   match '/main', to: 'users#show', via: 'get'
-
+  match '/topic', to: 'topics#show', via: 'get'
+  match '/generate', to: 'comments#new', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

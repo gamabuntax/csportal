@@ -1,0 +1,31 @@
+<% provide(:title, @topic.user.name) %>
+
+<% if signed_in? %>
+<%= render 'shared/side'%>
+
+<div class="mainregion">
+	<h1> <%= @topic.subject %> </h1>
+	<h2><%= gravatar_for @topic.user%>
+	 <%= @user.name %></h2>
+	<br>
+	<p><%= @topic.body %> </p>
+
+
+	 <h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
+	 <br><br>
+	 <p><%= link_to "Back", main_path %></p>
+</div>
+
+<%else%>
+
+<h1> <%= @topic.subject %> </h1>
+<h2><%= gravatar_for @topic.user%>
+<%= @topic.user.name %></h2>
+<br>
+<p><%= @topic.body %> </p>
+
+<h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
+<br><br>
+<p><%= link_to "Back", root_path %></p>
+
+<%end%>
