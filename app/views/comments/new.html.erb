@@ -10,6 +10,7 @@
     <%= form_for(@comment) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
       <%= f.text_area :body, :placeholder => "Post your comment here"  %>
+      <%= hidden_field(:comment, :topic_id, :value => @topic.id) %>
       <%= f.submit "Post", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
