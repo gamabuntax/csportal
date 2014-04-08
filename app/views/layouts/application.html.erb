@@ -18,10 +18,10 @@
           <div class ="nav">
           <form class="navbar-form" role="form">
               <input type="text" placeholder="Search topic" class="form-control">
-            
             </form>
           </div>
             <ul class="nav pull-right">
+
               <li><%= link_to "Home",root_path %></li>
               <li><%= link_to "About",about_path %></li>
                <% if signed_in? %>
@@ -44,6 +44,10 @@
         </div>
       </div>
     </header>
+
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>

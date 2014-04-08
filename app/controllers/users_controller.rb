@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = current_user
-    @topics = @user.topics.paginate(page: params[:page])
+    @topics = @user.topics.paginate(page: params[:page], :per_page =>10)
   end
 
   def new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   		#handle a successfull save.
       sign_in @user
   		flash.now[:success] = "Welcome to CSPortal!"
-  		redirect_to @user
+  		redirect_to root_url
   	else
   		render 'new'
   	end

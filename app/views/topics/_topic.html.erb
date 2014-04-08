@@ -1,4 +1,10 @@
 <li>
- <span><h2><%= topic.title %></h2></span>
- <span class ="timestamp"> Created at <%= topic.created_at %> </span>
+ <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%></h2></span>
+ <span class="timestamp">
+    Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+  </span>
+  <% if current_user?(topic.user) %>
+  <%= link_to "delete", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
+  <%end%>
+
  </li>

@@ -1,5 +1,11 @@
 class TopicsController < ApplicationController
 	 before_action :signed_in_user, only: [:create, :destroy, :new]
+   before_action :correct_user,   only: :destroy
+
+  def show
+      @user = current_user if signed_in?
+      @topic = Topic.find(params[:id])
+  end
 
 	def new
     @user = current_user
@@ -11,18 +17,25 @@ class TopicsController < ApplicationController
   		@topic = current_user.topics.build(topic_params)
   		if @topic.save
   			flash[:success] = "Topic created!"
-  			redirect_to root_url
+  			redirect_to main_path
   		else
   			render 'new'
   		end	
  	end
 
   	def destroy
+      @topic.destroy
+      redirect_to main_path
   	end
 
   	private
 
     	def topic_params
-      		params.require(:topic).permit(:title,:content)
+      		params.require(:topic).permit(:subject,:body)
     	end
+
+      def correct_user
+        @topic = current_user.topics.find_by(id: params[:id])
+        redirect_to main_path if @topic.nil?
+      end
 end

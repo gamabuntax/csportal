@@ -1,19 +1,16 @@
 
-<% provide(:title, 'Add a topic') %>
+<% provide(:title, 'Add comment') %>
 
 <%= render 'shared/side'%>
 <div class="mainregion">
 
 <div class="row">
   <div class="span6">
-  <h1>Add a topic</h1>
-    <%= form_for(@topic) do |f| %>
+  <h1>Add comment</h1>
+    <%= form_for(@comment) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :subject %>
-      <%= f.text_field :subject, :placeholder => "Topic subject" %> 
       <%= f.text_area :body, :placeholder => "Post your comment here"  %>
-
+      <%= hidden_field(:comment, :topic_id, :value => @topic.id) %>
       <%= f.submit "Post", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
