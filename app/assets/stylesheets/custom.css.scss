@@ -41,6 +41,7 @@ h1 {
 h2 {
   font-size: 1.4em;
   letter-spacing: -1px;
+  margin-bottom: 0px;
 }
 
 p {
@@ -134,9 +135,17 @@ input {
 
 .clear-all {
   clear: both;  
-
 }
 
 .topic {
   list-style: none;
+}
+
+.timestamp {
+  color: gray;
+  font-size: .9em;
+}
+
+.comment {
+  margin-bottom: 20px;
 }

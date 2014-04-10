@@ -5,27 +5,69 @@
 
 <div class="mainregion">
 	<h1> <%= @topic.subject %> </h1>
+	<div class="comment">
 	<h2><%= gravatar_for @topic.user%>
 	 <%= @topic.user.name %></h2>
 	<br>
 	<p><%= @topic.body %> </p>
+	<span class="timestamp">
+    		Posted by <%= @topic.user.name%> -  <%= time_ago_in_words(@topic.created_at) %> ago.
+  			</span>
+	</div>
 
+	<%if @topic.comments.any?%>
+		<%@topic.comments.each do |comment| %>
+			<div class="comment">
+			<h2><%= gravatar_for comment.user%>
+	 		<%= comment.user.name %></h2>
+			<br>
+			<p><%= comment.body %> </p>
+			<span class="timestamp">
+    		Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
 
+  			<% if current_user?(comment.user) %>
+  			<%= link_to "delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+  			<%end%>
+  			</span>
+			</div>
+		<%end%>
+
+	<%end%>
 	 <h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
-	 <br><br>
-	 <p><%= link_to "Back", root_path %></p>
+	 <br>
+	 <p><%= link_to "Back to main page", root_path %></p>
 </div>
 
 <%else%>
 
 <h1> <%= @topic.subject %> </h1>
+<div class="comment">
 <h2><%= gravatar_for @topic.user%>
 <%= @topic.user.name %></h2>
 <br>
 <p><%= @topic.body %> </p>
+<span class="timestamp">
+	Posted by <%= @topic.user.name%> -  <%= time_ago_in_words(@topic.created_at) %> ago.
+</span>
+</div>
+
+<%if @topic.comments.any?%>
+		<%@topic.comments.each do |comment| %>
+		<div class="comment">
+			<h2><%= gravatar_for comment.user%>
+	 		<%= comment.user.name %></h2>
+			<br>
+			<p><%= comment.body %> </p>
+			<span class="timestamp">
+    		Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
+  			</span>
+			</div>
+		<%end%>
+
+	<%end%>
 
 <h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
-<br><br>
-<p><%= link_to "Back", root_path %></p>
+<br>
+<p><%= link_to "Back to main page", root_path %></p>
 
 <%end%>

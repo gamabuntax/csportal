@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 	before_action :signed_in_user, only: [:create, :destroy, :new]
+	before_action :correct_user,   only: :destroy
+
 	def new
 		logger.info("===================== #{params[:id]}")
 		@topic = Topic.find(params[:id])
@@ -11,13 +13,9 @@ class CommentsController < ApplicationController
 		@user = current_user
 		logger.info ("============= #{comment_params} ")
 		@comment = current_user.comments.build(comment_params)
-		#somehow it didnt register both of the foreign key id...
-		#something wrong right here. when i try to create it.. it fails.
-		#it didnt get both the id
-		#@comment.topic_id = params[:id]
 		if @comment.save
 			flash[:success] = "Comment created!"
-			redirect_to main_path
+			redirect_to topic_path(@comment.topic_id)
 		else
 			logger.info ("============== #{@comment.errors.full_messages}")
 
@@ -26,6 +24,8 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
+		@comment.destroy
+		redirect_to topic_path(@comment.topic_id)
 	end
 
 	private
@@ -34,4 +34,8 @@ class CommentsController < ApplicationController
       		params.require(:comment).permit(:body, :topic_id)
    	end
 
+	def correct_user
+        @comment = current_user.comments.find_by(id: params[:id])
+        redirect_to main_path if @comment.nil?
+      end
 end
