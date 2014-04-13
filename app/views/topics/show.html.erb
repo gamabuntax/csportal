@@ -26,7 +26,8 @@
     		Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
 
   			<% if current_user?(comment.user) %>
-  			<%= link_to "delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+  			<%= link_to "edit ", edit_comment_path(comment)%>
+  			<%= link_to "| delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
   			<%end%>
   			</span>
 			</div>

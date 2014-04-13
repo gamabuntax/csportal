@@ -1,0 +1,17 @@
+
+<% provide(:title, 'Edit comment') %>
+
+<%= render 'shared/side'%>
+<div class="mainregion">
+
+<div class="row">
+  <div class="span6">
+  <h1>Add comment</h1>
+    <%= form_for(@comment) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <%= f.text_area :body, :placeholder => "Post your comment here"  %>
+      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>

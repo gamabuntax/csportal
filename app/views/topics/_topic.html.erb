@@ -4,7 +4,7 @@
     Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
 
   <% if current_user?(topic.user) %>
-   <%= link_to "edit ", edit_topic_path(topic)%>
+  <%= link_to "edit ", edit_topic_path(topic)%>
   <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
  
   <%end%>

@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
-	before_action :signed_in_user, only: [:create, :destroy, :new]
-	before_action :correct_user,   only: :destroy
+	before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update]
+	before_action :correct_user,   only: [:destroy, :edit, :update]
 
 	def new
 		logger.info("===================== #{params[:id]}")
 		@topic = Topic.find(params[:id])
-		@user = current_user
+		@user = current_user if signed_in?
 		@comment = current_user.comments.build if signed_in?
 	end
 
@@ -22,6 +22,21 @@ class CommentsController < ApplicationController
 			redirect_to main_path
 		end
 	end
+
+	def edit
+	    @user = current_user if signed_in?
+	    @comment = Comment.find(params[:id])
+  end
+
+	def update
+	    @comment = Comment.find(params[:id])
+	    if @comment.update_attributes(comment_params)
+	      flash.now[:success] = "Comment updated"
+	      redirect_to topic_path(@comment.topic_id)
+	    else
+	      render 'edit'
+	    end
+  	end
 
 	def destroy
 		@comment.destroy
