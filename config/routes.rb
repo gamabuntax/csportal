@@ -14,6 +14,10 @@ CSPortal::Application.routes.draw do
   match '/topic', to: 'topics#show', via: 'get'
   match '/generate', to: 'comments#new', via: 'get'
 
+  match '/search', to: 'topics#search', via: 'post'
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

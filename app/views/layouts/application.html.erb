@@ -16,9 +16,12 @@
           <%= link_to "CSPortal", root_path, id: "logo" %>
           <nav>
           <div class ="nav">
-          <form class="navbar-form" role="form">
-              <input type="text" placeholder="Search topic" class="form-control">
-            </form>
+
+          <%= form_tag("/search", method: "post", class: "navbar-form") do %>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search for topic" name="topic">
+              </div>
+            <%end%>  
           </div>
             <ul class="nav pull-right">
 

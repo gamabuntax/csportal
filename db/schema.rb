@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20140402202616) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["topic_id", "created_at"], name: "index_comments_on_topic_id_and_created_at"
-  add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
+  add_index "comments", ["topic_id", "created_at"], name: "index_comments_on_topic_id_and_created_at", using: :btree
+  add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "subject"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140402202616) do
     t.datetime "updated_at"
   end
 
-  add_index "topics", ["user_id", "created_at"], name: "index_topics_on_user_id_and_created_at"
+  add_index "topics", ["user_id", "created_at"], name: "index_topics_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
