@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-	 before_action :signed_in_user, only: [:create, :destroy, :new]
-   before_action :correct_user,   only: :destroy
+	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update]
+   before_action :correct_user,   only: [:destroy, :edit, :update]
 
   def show
       @user = current_user if signed_in?
@@ -23,6 +23,21 @@ class TopicsController < ApplicationController
 		end	
  	end
 
+  def edit
+    @user = current_user if signed_in?
+    @topic = Topic.find(params[:id])
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+    if @topic.update_attributes(topic_params)
+      flash.now[:success] = "Topic updated"
+      redirect_to topic_path(@topic)
+    else
+      render 'edit'
+    end
+  end
+
 	def destroy
     @topic.destroy
     redirect_to main_path
@@ -38,7 +53,7 @@ class TopicsController < ApplicationController
 private
 
   	def topic_params
-    		params.require(:topic).permit(:subject,:body)
+    		params.require(:topic).permit(:subject,:body,:professor_name, :course_number)
   	end
 
     def correct_user

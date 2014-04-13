@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402202616) do
+ActiveRecord::Schema.define(version: 20140413190743) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20140402202616) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "professor_name"
+    t.integer  "course_number"
   end
 
   add_index "topics", ["user_id", "created_at"], name: "index_topics_on_user_id_and_created_at", using: :btree
