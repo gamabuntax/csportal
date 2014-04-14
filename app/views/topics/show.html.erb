@@ -5,10 +5,14 @@
 
 <div class="mainregion">
 	<h1> <%= @topic.subject %> </h1>
+	<h5> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h5>
+	<br>
 	<div class="comment">
 	<h2><%= gravatar_for @topic.user%>
 	 <%= @topic.user.name %></h2>
+	 <span class="timestamp"> <%=@topic.user.status%></span>
 	<br>
+
 	<p><%= @topic.body %> </p>
 	<span class="timestamp">
     		Posted by <%= @topic.user.name%> -  <%= time_ago_in_words(@topic.created_at) %> ago.
@@ -20,6 +24,7 @@
 			<div class="comment">
 			<h2><%= gravatar_for comment.user%>
 	 		<%= comment.user.name %></h2>
+	 		<span class="timestamp"> <%=comment.user.status%></span>
 			<br>
 			<p><%= comment.body %> </p>
 			<span class="timestamp">
@@ -45,6 +50,7 @@
 <div class="comment">
 <h2><%= gravatar_for @topic.user%>
 <%= @topic.user.name %></h2>
+<span class="timestamp"> <%=@topic.user.status%></span>
 <br>
 <p><%= @topic.body %> </p>
 <span class="timestamp">
@@ -57,6 +63,7 @@
 		<div class="comment">
 			<h2><%= gravatar_for comment.user%>
 	 		<%= comment.user.name %></h2>
+	 		<span class="timestamp"> <%=comment.user.status%></span>
 			<br>
 			<p><%= comment.body %> </p>
 			<span class="timestamp">

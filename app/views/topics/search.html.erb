@@ -1,0 +1,27 @@
+<% provide(:title, "Search") %>
+
+<% if signed_in? %>
+<%= render 'shared/side'%>
+
+<div class="mainregion">
+<% if @topics.any? %>
+	<h1> Topics (<%= @topics.count %>) </h1>
+	<ol class ="topic">
+	<%=render @topics %>
+	</ol>
+	<%= will_paginate @topics %>
+	<%else%>
+	<h1> Sorry, no results were found. </h1>
+	<% end %>
+</div>
+<%else%>
+<% if @topics.any? %>
+	<h1> Topics (<%= @topics.count %>) </h1>
+	<ol class ="topic">
+	<%=render @topics %>
+	</ol>
+	<%= will_paginate @topics %>
+	<%else%>
+	<h1> Sorry, no results were found. </h1>
+	<% end %>
+<%end%>

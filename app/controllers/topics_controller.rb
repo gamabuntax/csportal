@@ -44,6 +44,7 @@ class TopicsController < ApplicationController
 	end
 
   def search
+    @user = current_user if signed_in?
     @topics = Topic.search do 
       fulltext params[:topic]
     end.results

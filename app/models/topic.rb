@@ -9,6 +9,7 @@ class Topic < ActiveRecord::Base
 	validates :course_number, presence: true, length: {maximum:3}
 
 	searchable do
-		text :subject
+		text :subject, :professor_name
+		integer :course_number
 	end
 end

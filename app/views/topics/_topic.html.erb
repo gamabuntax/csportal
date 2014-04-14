@@ -1,7 +1,8 @@
 <li>
  <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%></h2></span>
  <span class="timestamp">
-    Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+ 	CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
+     Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
 
   <% if current_user?(topic.user) %>
   <%= link_to "edit ", edit_topic_path(topic)%>

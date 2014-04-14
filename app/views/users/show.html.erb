@@ -8,5 +8,7 @@
 	<%=render @topics %>
 	</ol>
 	<%= will_paginate @topics %>
+	<%else%>
+	<h1> You don't have any topic yet </h1>
 	<% end %>
 </div>
