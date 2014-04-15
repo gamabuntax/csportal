@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update]
+	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update, :rate]
    before_action :correct_user,   only: [:destroy, :edit, :update]
 
   def show
@@ -47,8 +47,19 @@ class TopicsController < ApplicationController
     @user = current_user if signed_in?
     @topics = Topic.search do 
       fulltext params[:topic]
+      paginate(page: params[:page], :per_page =>10)
     end.results
             
+  end
+
+  def rate
+    
+    @topic = Topic.find(params[:id])
+    @topic.update_column(:rating,@topic.rating+1)
+    #@topic.increment(:rating)
+    #@topic.save
+    #redirect_to root_url
+    redirect_to :back
   end
 
 private

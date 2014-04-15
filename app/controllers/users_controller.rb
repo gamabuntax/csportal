@@ -16,7 +16,7 @@
   	if @user.save
   		#handle a successfull save.
       sign_in @user
-  		flash.now[:success] = "Welcome to CSPortal!"
+  		flash[:success] = "Welcome to CSPortal!"
   		redirect_to root_url
   	else
   		render 'new'
@@ -30,7 +30,7 @@
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash.now[:success] = "Profile updated"
+      flash[:success] = "Profile updated"
       redirect_to @user
     else
       render 'edit'

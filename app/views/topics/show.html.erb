@@ -5,7 +5,7 @@
 
 <div class="mainregion">
 	<h1> <%= @topic.subject %> </h1>
-	<h5> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h5>
+	<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
 	<br>
 	<div class="comment">
 	<h2><%= gravatar_for @topic.user%>
@@ -47,6 +47,7 @@
 <%else%>
 
 <h1> <%= @topic.subject %> </h1>
+<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
 <div class="comment">
 <h2><%= gravatar_for @topic.user%>
 <%= @topic.user.name %></h2>

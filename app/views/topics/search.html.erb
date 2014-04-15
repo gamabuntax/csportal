@@ -5,7 +5,7 @@
 
 <div class="mainregion">
 <% if @topics.any? %>
-	<h1> Topics (<%= @topics.count %>) </h1>
+	<h1>  (<%= @topics.count %>) topics found</h1>
 	<ol class ="topic">
 	<%=render @topics %>
 	</ol>
@@ -13,10 +13,12 @@
 	<%else%>
 	<h1> Sorry, no results were found. </h1>
 	<% end %>
+<br>
+<p><%= link_to "Back to main page", root_path %></p>	
 </div>
 <%else%>
 <% if @topics.any? %>
-	<h1> Topics (<%= @topics.count %>) </h1>
+	<h1> (<%= @topics.count %>) topics found </h1>
 	<ol class ="topic">
 	<%=render @topics %>
 	</ol>
@@ -24,4 +26,7 @@
 	<%else%>
 	<h1> Sorry, no results were found. </h1>
 	<% end %>
+
+<br>
+<p><%= link_to "Back to main page", root_path %></p>
 <%end%>
