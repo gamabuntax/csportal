@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140415041044) do
     t.datetime "updated_at"
     t.string   "professor_name"
     t.integer  "course_number"
-    t.integer  "rating"
+    t.integer  "rating",         default: 0
   end
 
   add_index "topics", ["user_id", "created_at"], name: "index_topics_on_user_id_and_created_at", using: :btree
