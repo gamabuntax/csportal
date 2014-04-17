@@ -11,10 +11,13 @@ gem 'bcrypt-ruby', '3.1.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
-gem 'progress_bar' # to show a progress bar while reindexing
+# gem 'sunspot_rails'
+# gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+# gem 'progress_bar' # to show a progress bar while reindexing
 
+# for elastic search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development, :test do
   # gem 'sqlite3', '1.3.8'

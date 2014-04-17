@@ -45,10 +45,11 @@ class TopicsController < ApplicationController
 
   def search
     @user = current_user if signed_in?
-    @topics = Topic.search do 
-      fulltext params[:topic]
-      paginate(page: params[:page], :per_page =>10)
-    end.results
+    @topics = Topic.search(params[:topic]).records
+    # @topics = Topic.search do 
+    #   fulltext params[:topic]
+    #   paginate(page: params[:page], :per_page =>10)
+    # end.results
             
   end
 

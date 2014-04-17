@@ -1,4 +1,7 @@
 class Topic < ActiveRecord::Base
+	include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	default_scope -> { order('created_at DESC') }
@@ -10,13 +13,15 @@ class Topic < ActiveRecord::Base
 	validates :course_number, presence: true, length: {maximum:3}
 
 
+
+
     #def init
      # self.rating = 0       #will set the default value only if it's nil
     #end
 
-	searchable do
-		text :subject, :professor_name, :course_number
-	end
+	# searchable do
+	# 	text :subject, :professor_name, :course_number
+	# end
 
 	
 end
