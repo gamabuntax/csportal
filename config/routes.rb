@@ -3,6 +3,7 @@ CSPortal::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :topics
   resources :comments
+  resources :ratingtopics
   root 'home#index'
 
   match '/about', to: 'home#about', via: 'get'

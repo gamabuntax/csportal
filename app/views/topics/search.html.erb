@@ -7,9 +7,30 @@
 <% if @topics.any? %>
 	<h1>  (<%= @topics.count %>) topics found</h1>
 	<ol class ="topic">
-	<%=render @topics %>
+	<% @topics.each do |topic| %>
+ 	 <!-- do smth with title -->
+	<li>
+		 <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
+		 <button type="button"><%=topic.rating%></button></h2></span>
+
+		 
+		 <span class="timestamp">
+		 	CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
+		     Posted by <%= topic.id%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+
+		  <% if current_user?(topic.user) %>
+		  <%= link_to "edit ", edit_topic_path(topic)%>
+		  <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
+		 
+		 <%end%>
+		  <%#= link_to "| Upvote ", rate_path(:id =>topic.id), :method => :post%>
+		  </span>
+ </li>
+	<%#=render @topics %>
+	<% end %>
 	</ol>
-	<%#= will_paginate @topics %>
+	
+	<%= will_paginate @topics %>
 	<%else%>
 	<h1> Sorry, no results were found. </h1>
 	<% end %>
@@ -20,9 +41,22 @@
 <% if @topics.any? %>
 	<h1> (<%= @topics.count %>) topics found </h1>
 	<ol class ="topic">
-	<%=render @topics %>
+	<% @topics.each do |topic| %>
+ 	 <!-- do smth with title -->
+	<li>
+		 <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
+		 <button type="button"><%=topic.rating%></button></h2></span>	 
+		 <span class="timestamp">
+		 	CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
+		     Posted by <%= topic.user%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+		  <%#= link_to "| Upvote ", rate_path(:id =>topic.id), :method => :post%>
+		  </span>
+ 	</li>
+	<%#=render @topics %>
+	<%end%>
 	</ol>
-	<%#= will_paginate @topics %>
+	
+	<%= will_paginate @topics %>
 	<%else%>
 	<h1> Sorry, no results were found. </h1>
 	<% end %>

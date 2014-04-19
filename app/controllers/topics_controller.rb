@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(topic_params)
-      flash.now[:success] = "Topic updated"
+      flash[:success] = "Topic updated"
       redirect_to topic_path(@topic)
     else
       render 'edit'
@@ -45,22 +45,30 @@ class TopicsController < ApplicationController
 
   def search
     @user = current_user if signed_in?
-    @topics = Topic.search(params[:topic]).records
+    #@topics = Topic.search(params[:topic]).records
+    @topics = Topic.search params[:topic], :page => ( params[:page] || 1 ), :per_page => 10
     # @topics = Topic.search do 
     #   fulltext params[:topic]
     #   paginate(page: params[:page], :per_page =>10)
-    # end.results
-            
+    # end.results          
   end
 
   def rate
-    
+    @user = current_user if signed_in?
     @topic = Topic.find(params[:id])
-    @topic.update_column(:rating,@topic.rating+1)
-    #@topic.increment(:rating)
-    #@topic.save
-    #redirect_to root_url
-    redirect_to :back
+    #if(Ratingtopic.find(:topic_id => params[:id], :user_id => @user))
+    if(Ratingtopic.find_by(:topic_id => params[:id], :user_id => @user.id))
+      flash[:error] = "You are already promoted this topic"
+      redirect_to :back
+      #redirect_to :back
+    else
+      @topic.update_column(:rating,@topic.rating+1)
+      @ratingtopic = Ratingtopic.new(:topic_id =>params[:id], :user_id =>@user.id)
+      @ratingtopic.save
+      flash[:success] = "You promoted this topic successfully"
+      redirect_to :back
+      #redirect_to :back
+    end
   end
 
 private

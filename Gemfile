@@ -18,6 +18,7 @@ gem 'mysql2'
 # for elastic search
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'tire'
 
 group :development, :test do
   # gem 'sqlite3', '1.3.8'

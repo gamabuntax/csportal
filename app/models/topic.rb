@@ -1,6 +1,8 @@
 class Topic < ActiveRecord::Base
-	include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+	#include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
+ include Tire::Model::Search
+  include Tire::Model::Callbacks 
   
 	belongs_to :user
 	has_many :comments, dependent: :destroy
@@ -12,8 +14,7 @@ class Topic < ActiveRecord::Base
 	validates :professor_name, presence: true, length: {maximum:30}
 	validates :course_number, presence: true, length: {maximum:3}
 
-
-
+	#index_name BONSAI_INDEX_NAME
 
     #def init
      # self.rating = 0       #will set the default value only if it's nil
@@ -21,7 +22,6 @@ class Topic < ActiveRecord::Base
 
 	# searchable do
 	# 	text :subject, :professor_name, :course_number
-	# end
+	# en
 
-	
 end

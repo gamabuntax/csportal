@@ -4,8 +4,16 @@
 <%= render 'shared/side'%>
 
 <div class="mainregion">
-	<h1> <%= @topic.subject %> </h1>
+	<h1> <%= @topic.subject %>  <button type="button"><%=@topic.rating%></button> </h1>
 	<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
+	 <span class="timestamp">
+  <% if current_user?(@topic.user) %>
+  <%= link_to "edit ", edit_topic_path(@topic)%>
+  <%= link_to "| delete |", @topic, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+ <%end%>
+ <%= link_to "Upvote ", rate_path(:id =>@topic.id), :method => :post%>
+
+  </span>
 	<br>
 	<div class="comment">
 	<h2><%= gravatar_for @topic.user%>
@@ -46,8 +54,12 @@
 
 <%else%>
 
-<h1> <%= @topic.subject %> </h1>
+<h1> <%= @topic.subject %>  <button type="button"><%=@topic.rating%></button> </h1>
 <h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
+	 <span class="timestamp">
+ <%= link_to "Upvote ", rate_path(:id =>@topic.id), :method => :post%> </span>
+<br>
+
 <div class="comment">
 <h2><%= gravatar_for @topic.user%>
 <%= @topic.user.name %></h2>

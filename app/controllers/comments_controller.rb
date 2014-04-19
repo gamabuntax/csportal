@@ -17,9 +17,8 @@ class CommentsController < ApplicationController
 			flash[:success] = "Comment created!"
 			redirect_to topic_path(@comment.topic_id)
 		else
-			logger.info ("============== #{@comment.errors.full_messages}")
-
-			redirect_to main_path
+			flash[:error] = "Please comment the topic"
+			redirect_to topic_path(@comment.topic_id)
 		end
 	end
 
