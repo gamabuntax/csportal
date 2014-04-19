@@ -65,6 +65,7 @@ class TopicsController < ApplicationController
       @topic.update_column(:rating,@topic.rating+1)
       @ratingtopic = Ratingtopic.new(:topic_id =>params[:id], :user_id =>@user.id)
       @ratingtopic.save
+      @topic.update_index
       flash[:success] = "You promoted this topic successfully"
       redirect_to :back
       #redirect_to :back
