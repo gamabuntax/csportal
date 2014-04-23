@@ -1,5 +1,5 @@
 class AddAccessLevelToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :access_level, :boolean , default: 0
+    add_column :users, :access_level, :integer , default: 0
   end
 end

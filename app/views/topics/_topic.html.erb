@@ -14,7 +14,7 @@
      Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
   <%if signed_in? %>
 
-	  <% if current_user?(topic.user) || current_user.access_level == true%>
+	  <% if current_user?(topic.user) || current_user.access_level == 1%>
 	  <%= link_to "edit ", edit_topic_path(topic)%>
 	  <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
 	 
