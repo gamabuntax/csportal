@@ -1,27 +1,44 @@
 <% provide(:title, 'All topics') %>
 
+<div>
+ <% if @goodtopics.any? %>
+ <h1>Most popular topics</h1>
+   
+    <table class ="topic">
+      <%=render @goodtopics %>
+    </table>
+  <%end%>
+</div>
 
- <h1>All topics (<%= @topics.count%>)</h1>
+<div>
+ <h1>Latest topics (<%= @topics.count%>)</h1>
  <% if @topics.any? %>
    
-    <ol class ="topic">
+    <table class ="topic">
       <%=render @topics %>
-    </ol>
+    </table>
     <%= will_paginate @topics %>
   <% else%>
 
   <h2>There are no topics yet! </h2>
   <%end%>
+</div>
+
+<div>
+
+<h1>Active users</h1>
+<% if @activeUsers.any? %>
+  <% @activeUsers.each do |activeUser| %>
+  <div>
 
 
- <% if @goodtopics.any? %>
- <h1>Popular topics</h1>
-   
-    <ol class ="topic">
-      <%=render @goodtopics %>
-    </ol>
+  </div>
+
   <%end%>
+<%end%>
 
+
+</div>
 
    
 
