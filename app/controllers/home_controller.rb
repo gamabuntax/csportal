@@ -4,7 +4,7 @@
   	@topics = Topic.order(created_at: :desc).paginate(page: params[:page], :per_page =>5)
   	#@goodtopics = Topic.order(rating: :desc).paginate(page: params[:page], :per_page =>5)
   	@goodtopics = Topic.limit(5).order(rating: :desc)
-  	@activeUsers = User.all
+  	@activeUsers = User.limit(5)
 
 
   

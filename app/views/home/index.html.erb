@@ -4,7 +4,7 @@
  <% if @goodtopics.any? %>
  <h1>Most popular topics</h1>
    
-    <table class ="topic">
+    <table>
       <%=render @goodtopics %>
     </table>
   <%end%>
@@ -14,8 +14,8 @@
  <h1>Latest topics (<%= @topics.count%>)</h1>
  <% if @topics.any? %>
    
-    <table class ="topic">
-      <%=render @topics %>
+    <table>
+      <tr><%=render @topics %></tr>
     </table>
     <%= will_paginate @topics %>
   <% else%>
@@ -27,14 +27,23 @@
 <div>
 
 <h1>Active users</h1>
+ <table>
+  <tr>
 <% if @activeUsers.any? %>
   <% @activeUsers.each do |activeUser| %>
   <div>
+ 
+    <td width=20%><div><%= gravatar_for activeUser%></div>
 
+        <div class="clear-all"><%= activeUser.name %></div>
+    </td>
 
-  </div>
 
   <%end%>
+
+    </tr>
+  </table>
+  </div>  
 <%end%>
 
 

@@ -1,4 +1,4 @@
-<tr>
+
  <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
  <button type="button" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span> 
  <span class="timestamp">
@@ -25,4 +25,3 @@ Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ag
  <%= link_to "| like ", like_path(:id =>topic.id), :method => :post%>
   <%= link_to "| dislike ", dislike_path(:id =>topic.id), :method => :post%>
   </span>
- </tr>
