@@ -1,7 +1,15 @@
 <% provide(:title, 'All topics') %>
 
+ <% if @goodtopics.any? %>
+ <h1>Most popular topics</h1>
+   
+    <ol class ="topic">
+      <%=render @goodtopics %>
+    </ol>
+  <%end%>
 
- <h1>All topics (<%= @topics.count%>)</h1>
+
+ <h1>Latest topics (<%= @topics.count%>)</h1>
  <% if @topics.any? %>
    
     <ol class ="topic">
@@ -14,13 +22,18 @@
   <%end%>
 
 
- <% if @goodtopics.any? %>
- <h1>Popular topics</h1>
-   
-    <ol class ="topic">
-      <%=render @goodtopics %>
-    </ol>
+<h1>Active users</h1>
+<% if @activeUsers.any? %>
+  <% @titles.each do |title| %>
+  <div>
+    
+
+  </div>
+
   <%end%>
+<%end%>
+
+
 
 
    
