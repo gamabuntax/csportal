@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update, :like, :dislike]
    before_action :correct_user,   only: [:destroy, :edit, :update]
-
+   
   def show
       @user = current_user if signed_in?
       @topic = Topic.find(params[:id])
@@ -40,7 +40,7 @@ class TopicsController < ApplicationController
 
 	def destroy
     @topic.destroy
-    redirect_to main_path
+    redirect_to root_path
 	end
 
   def search
@@ -96,7 +96,9 @@ private
   	end
 
     def correct_user
-      @topic = current_user.topics.find_by(id: params[:id])
+      #@topic = current_user.topics.find_by(id: params[:id])
+      @topic = Topic.find_by(id: params[:id])
       redirect_to main_path if @topic.nil?
     end
+
 end

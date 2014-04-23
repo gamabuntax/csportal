@@ -1,14 +1,28 @@
 <% provide(:title, 'All topics') %>
 
+
+ <h1>All topics (<%= @topics.count%>)</h1>
  <% if @topics.any? %>
-    <h1>All topics (<%= @topics.count%>)</h1>
+   
     <ol class ="topic">
       <%=render @topics %>
     </ol>
     <%= will_paginate @topics %>
+  <% else%>
+
+  <h1>There are no topics yet! </h1>
   <%end%>
 
 
+ <% if @goodtopics.any? %>
+ <h1>Popular topics</h1>
+   
+    <ol class ="topic">
+      <%=render @goodtopics %>
+    </ol>
+  <%end%>
 
 
+  <h1>Active users</h1>
+   
 

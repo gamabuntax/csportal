@@ -4,13 +4,21 @@
 
  
  <span class="timestamp">
- 	CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
-     Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
-
-  <% if current_user?(topic.user) %>
-  <%= link_to "edit ", edit_topic_path(topic)%>
-  <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
+ <%if !topic.course_number.nil?%>
+ 	CPSC <%=topic.course_number%> | 
+ <%end%>
+ <%if !topic.professor_name.empty?%>
+ 	Professor <%=topic.professor_name%>.
+ <%end%>
  
+     Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+  <%if signed_in? %>
+
+	  <% if current_user?(topic.user) || current_user.access_level == true%>
+	  <%= link_to "edit ", edit_topic_path(topic)%>
+	  <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
+	 
+	 <%end%>
  <%end%>
 
  <%= link_to "| like ", like_path(:id =>topic.id), :method => :post%>

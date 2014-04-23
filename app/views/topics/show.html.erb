@@ -2,14 +2,26 @@
 
 
 	<h1> <%= @topic.subject %>  <button type="button" class="btn btn-default"><%=@topic.rating%></button> </h1>
+	<%if !@topic.course_number.nil?%>
+		<h4> CPSC <%=@topic.course_number%></h4>
+	<%end%>
+	<%if !@topic.professor_name.empty?%>
+ 		<h4>Professor <%=@topic.professor_name%></h4>
+ 	<%end%>
+ 	<%if !@topic.course_number.nil? && !@topic.professor_name.empty?%>
 	<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
+	<%end%>
 	 <span class="timestamp">
-  <% if current_user?(@topic.user) %>
-  <%= link_to "edit ", edit_topic_path(@topic)%>
-  <%= link_to "| delete |", @topic, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
- <%end%>
- <%= link_to " like |", like_path(:id =>@topic.id), :method => :post%>
- <%= link_to " dislike", dislike_path(:id =>@topic.id), :method => :post%>
+
+	  <%if signed_in? %>
+		  <% if current_user?(@topic.user) || current_user.access_level == true %>
+		  <%= link_to "edit ", edit_topic_path(@topic)%>
+		  <%= link_to "| delete |", @topic, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+		 <%end%>
+	 <%end%>
+
+	 <%= link_to " like |", like_path(:id =>@topic.id), :method => :post%>
+	 <%= link_to " dislike", dislike_path(:id =>@topic.id), :method => :post%>
 
   </span>
 	<br>
@@ -37,9 +49,11 @@
 			<span class="timestamp">
     		<p>Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
 
-  			<% if current_user?(comment.user) %>
-  			<%= link_to "edit ", edit_comment_path(comment)%>
-  			<%= link_to "| delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+    		<%if signed_in? %>
+	  			<% if current_user?(comment.user) || current_user.access_level == true %>
+	  			<%= link_to "edit ", edit_comment_path(comment)%>
+	  			<%= link_to "| delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
+	  			<%end%>
   			<%end%>
 
   			</p></span>
