@@ -1,9 +1,6 @@
 <% provide(:title, "Search") %>
 
-<% if signed_in? %>
-<%= render 'shared/side'%>
 
-<div class="mainregion">
 <% if @topics.any? %>
 	<h1>  (<%= @topics.count %>) topics found</h1>
 	<ol class ="topic">
@@ -36,31 +33,3 @@
 	<% end %>
 <br>
 <p><%= link_to "Back to main page", root_path %></p>	
-</div>
-<%else%>
-<% if @topics.any? %>
-	<h1> (<%= @topics.count %>) topics found </h1>
-	<ol class ="topic">
-	<% @topics.each do |topic| %>
- 	 <!-- do smth with title -->
-	<li>
-		 <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
-		 <button type="button" class="btn btn-default"><%=topic.rating%></button></h2></span>	 
-		 <span class="timestamp">
-		 	CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
-		     Posted by <%= topic.user%> -  <%= time_ago_in_words(topic.created_at) %> ago.
-		  <%#= link_to "| Upvote ", rate_path(:id =>topic.id), :method => :post%>
-		  </span>
- 	</li>
-	<%#=render @topics %>
-	<%end%>
-	</ol>
-	
-	<%= will_paginate @topics %>
-	<%else%>
-	<h1> Sorry, no results were found. </h1>
-	<% end %>
-
-<br>
-<p><%= link_to "Back to main page", root_path %></p>
-<%end%>

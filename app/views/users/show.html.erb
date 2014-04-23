@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
-<%= render 'shared/side'%>
 
-<div class="mainregion">
+
+
 	<% if @user.topics.any? %>
 	<h1> Your topics (<%= @user.topics.count %>) </h1>
 	<ol class ="topic">
@@ -11,4 +11,3 @@
 	<%else%>
 	<h1> You don't have any topic yet </h1>
 	<% end %>
-</div>

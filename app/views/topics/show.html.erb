@@ -1,9 +1,6 @@
 <% provide(:title, @topic.user.name) %>
 
-<% if signed_in? %>
-<%= render 'shared/side'%>
 
-<div class="mainregion">
 	<h1> <%= @topic.subject %>  <button type="button" class="btn btn-default"><%=@topic.rating%></button> </h1>
 	<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
 	 <span class="timestamp">
@@ -20,12 +17,13 @@
 	<h2><%= gravatar_for @topic.user%>
 	 <%= @topic.user.name %></h2>
 	 <span class="timestamp"> <%=@topic.user.status%></span>
-	<br>
+	
+	<div class="clear-all"></div>
 
 	<p><%= @topic.body %> </p>
-	<span class="timestamp">
+	<span class="timestamp"><p>
     		Posted by <%= @topic.user.name%> -  <%= time_ago_in_words(@topic.created_at) %> ago.
-  			</span>
+  			</p></span>
 	</div>
 
 	<%if @topic.comments.any?%>
@@ -34,16 +32,17 @@
 			<h2><%= gravatar_for comment.user%>
 	 		<%= comment.user.name %></h2>
 	 		<span class="timestamp"> <%=comment.user.status%></span>
-			<br>
+			<div class="clear-all"></div>
 			<p><%= comment.body %> </p>
 			<span class="timestamp">
-    		Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
+    		<p>Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
 
   			<% if current_user?(comment.user) %>
   			<%= link_to "edit ", edit_comment_path(comment)%>
   			<%= link_to "| delete", comment, method: :delete, data: { confirm: "Are you sure?"}, title: @topic.subject %>
   			<%end%>
-  			</span>
+
+  			</p></span>
 			</div>
 		<%end%>
 
@@ -51,48 +50,3 @@
 	 <h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
 	 <br>
 	 <p><%= link_to "Back to main page", root_path %></p>
-</div>
-
-<%else%>
-
-<h1> <%= @topic.subject %>  <button type="button" class="btn btn-default"><%=@topic.rating%></button> </h1>
-<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
-	 <span class="timestamp">
- <%= link_to " like |", like_path(:id =>@topic.id), :method => :post%>
- <%= link_to " dislike", dislike_path(:id =>@topic.id), :method => :post%>
-
- </span>
-<br>
-
-<div class="comment">
-<h2><%= gravatar_for @topic.user%>
-<%= @topic.user.name %></h2>
-<span class="timestamp"> <%=@topic.user.status%></span>
-<br>
-<p><%= @topic.body %> </p>
-<span class="timestamp">
-	Posted by <%= @topic.user.name%> -  <%= time_ago_in_words(@topic.created_at) %> ago.
-</span>
-</div>
-
-<%if @topic.comments.any?%>
-		<%@topic.comments.each do |comment| %>
-		<div class="comment">
-			<h2><%= gravatar_for comment.user%>
-	 		<%= comment.user.name %></h2>
-	 		<span class="timestamp"> <%=comment.user.status%></span>
-			<br>
-			<p><%= comment.body %> </p>
-			<span class="timestamp">
-    		Posted by <%= comment.user.name%> -  <%= time_ago_in_words(comment.created_at) %> ago.
-  			</span>
-			</div>
-		<%end%>
-
-	<%end%>
-
-<h2><%= link_to "REPLY", generate_path(:id => @topic.id), :class =>"pull-right" %></h2>
-<br>
-<p><%= link_to "Back to main page", root_path %></p>
-
-<%end%>

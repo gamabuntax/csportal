@@ -49,7 +49,7 @@ h4 {
 
 p {
   font-size: 1em;
-  line-height: 1.3em;
+  line-height: 1em;
 }
 
 /* header */
@@ -124,18 +124,21 @@ input {
 
 .mainregion {
   margin-top:15px;
- margin-left: 200px;
+ margin-left: 180px;
   padding-left: 10px;
+  border-left:1px solid gray;
 
 
 }
 .sideregion {
   margin-top:15px;
   float: left;
-  width: 200px;
+  width: 180px;
+
 }
 
 .clear-all {
+  margin-top: 5px;
   clear: both;  
 }
 
@@ -146,6 +149,8 @@ input {
 .timestamp {
   color: gray;
   font-size: .9em;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .comment {
