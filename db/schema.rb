@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423053715) do
+ActiveRecord::Schema.define(version: 20140423223235) do
 
   create_table "comments", force: true do |t|
-    t.string   "body"
+    t.text     "body"
     t.integer  "user_id"
     t.integer  "topic_id"
     t.datetime "created_at"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140423053715) do
 
   create_table "topics", force: true do |t|
     t.string   "subject"
-    t.string   "body"
+    t.text     "body"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140423053715) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "status"
+    t.string   "education_level"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

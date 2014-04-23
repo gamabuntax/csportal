@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: {minimum: 6}
  	validates :password_confirmation, presence: true
- 	validates :status, presence: true
+ 	validates :education_level, presence: true
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64

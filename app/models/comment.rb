@@ -3,5 +3,5 @@ class Comment < ActiveRecord::Base
 	belongs_to :topic
 	validates :user_id, presence: true
 	# validates :topic_id, presence: true
-	validates :body, presence: true, length: {maximum: 400}
+	validates :body, presence: true, length: {minimum: 10, maximum: 500}
 end
