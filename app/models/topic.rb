@@ -12,7 +12,7 @@ class Topic < ActiveRecord::Base
 	validates :subject, presence: true, length: {maximum: 100}
 	validates :body, presence: true, length: {maximum: 200}
 	validates :professor_name, length: {maximum:30}
-	validates :course_number, length: {maximum:3}
+	validates :course_number, :numericality => { :only_integer => true }
 
 	#index_name BONSAI_INDEX_NAME
 
