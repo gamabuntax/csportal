@@ -2,14 +2,14 @@
 
 
 	<h1> <%= @topic.subject %>  <button type="button" class="btn btn-default"><%=@topic.rating%></button> </h1>
-	<%if !@topic.course_number.nil?%>
-		<h4> CPSC <%=@topic.course_number%></h4>
-	<%end%>
-	<%if !@topic.professor_name.empty?%>
- 		<h4>Professor <%=@topic.professor_name%></h4>
- 	<%end%>
- 	<%if !@topic.course_number.nil? && !@topic.professor_name.empty?%>
-	<h4> CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
+
+	<%if !@topic.course_number.nil? && !@topic.professor_name.empty?%>
+		 <h4>CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
+	 <%elsif !@topic.course_number.nil?%>
+	 	<h4>CPSC <%=@topic.course_number%></h4> 
+	 <%elsif !@topic.professor_name.empty?%>
+	 	<h4>Professor <%=@topic.professor_name%></h4>
+	 	<%else%>
 	<%end%>
 	 <span class="timestamp">
 

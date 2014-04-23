@@ -1,19 +1,20 @@
 <li>
  <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
- <button type="button" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span>
-
- 
+ <button type="button" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span> 
  <span class="timestamp">
- <%if !topic.course_number.nil?%>
- 	CPSC <%=topic.course_number%> | 
- <%end%>
- <%if !topic.professor_name.empty?%>
- 	Professor <%=topic.professor_name%>.
- <%end%>
- 
-     Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
-  <%if signed_in? %>
 
+<%if !topic.course_number.nil? && !topic.professor_name.empty?%>
+	 CPSC <%=topic.course_number%> | Professor <%=topic.professor_name%>.
+ <%elsif !topic.course_number.nil?%>
+ 	CPSC <%=topic.course_number%> |
+ <%elsif !topic.professor_name.empty?%>
+ 	Professor <%=topic.professor_name%>.
+ 	<%else%>
+<%end%>
+
+Posted by <%= topic.user.name%> -  <%= time_ago_in_words(topic.created_at) %> ago.
+
+  <%if signed_in? %>
 	  <% if current_user?(topic.user) || current_user.access_level == 1%>
 	  <%= link_to "edit ", edit_topic_path(topic)%>
 	  <%= link_to "| delete ", topic, method: :delete, data: { confirm: "Are you sure?"}, title: topic.subject %>
