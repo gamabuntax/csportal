@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update, :rate]
+	 before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update, :like, :dislike]
    before_action :correct_user,   only: [:destroy, :edit, :update]
 
   def show
@@ -53,20 +53,37 @@ class TopicsController < ApplicationController
     # end.results          
   end
 
-  def rate
+  def like
     @user = current_user if signed_in?
     @topic = Topic.find(params[:id])
     #if(Ratingtopic.find(:topic_id => params[:id], :user_id => @user))
     if(Ratingtopic.find_by(:topic_id => params[:id], :user_id => @user.id))
-      flash[:error] = "You are already promoted this topic"
+      flash[:error] = "You are already rated this topic"
       redirect_to :back
-      #redirect_to :back
     else
       @topic.update_column(:rating,@topic.rating+1)
       @ratingtopic = Ratingtopic.new(:topic_id =>params[:id], :user_id =>@user.id)
       @ratingtopic.save
       @topic.update_index
-      flash[:success] = "You promoted this topic successfully"
+      flash[:success] = "You rated this topic successfully"
+      redirect_to :back
+      #redirect_to :back
+    end
+  end
+
+  def dislike
+    @user = current_user if signed_in?
+    @topic = Topic.find(params[:id])
+    #if(Ratingtopic.find(:topic_id => params[:id], :user_id => @user))
+    if(Ratingtopic.find_by(:topic_id => params[:id], :user_id => @user.id))
+      flash[:error] = "You are already rated this topic"
+      redirect_to :back
+    else
+      @topic.update_column(:rating,@topic.rating-1)
+      @ratingtopic = Ratingtopic.new(:topic_id =>params[:id], :user_id =>@user.id)
+      @ratingtopic.save
+      @topic.update_index
+      flash[:success] = "You rated this topic successfully"
       redirect_to :back
       #redirect_to :back
     end

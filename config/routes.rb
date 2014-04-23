@@ -16,7 +16,8 @@ CSPortal::Application.routes.draw do
   match '/generate', to: 'comments#new', via: 'get'
 
   match '/search', to: 'topics#search', via: 'post'
-  match '/rate', to: 'topics#rate', via: 'post'
+  match '/like', to: 'topics#like', via: 'post'
+   match '/dislike', to: 'topics#dislike', via: 'post'
 
 
 

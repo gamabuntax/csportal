@@ -17,8 +17,10 @@ class CommentsController < ApplicationController
 			flash[:success] = "Comment created!"
 			redirect_to topic_path(@comment.topic_id)
 		else
-			flash[:error] = "Please comment the topic"
-			redirect_to topic_path(@comment.topic_id)
+			#flash[:error] = "Please comment the topic"
+			#redirect_to topic_path(@comment.topic_id)
+			flash[:error] = "Please add comment"
+			redirect_to generate_path(:id =>@comment.topic_id)
 		end
 	end
 

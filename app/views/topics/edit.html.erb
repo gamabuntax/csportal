@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="span6">
-  <h1>Add a topic</h1>
+  <h1>Edit your topic</h1>
     <%= form_for(@topic) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
@@ -15,7 +15,6 @@
 
       <%= f.label "Course number" %>
       <%= f.text_field :course_number, :placeholder => "Course number" %>
-
 
       <%= f.label "Professor name"  %>
       <%= f.text_field :professor_name, :placeholder => "Professor name" %>

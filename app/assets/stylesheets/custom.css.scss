@@ -33,12 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.5em;
   letter-spacing: -2px;
 }
 
 h2 {
-  font-size: 1.4em;
+  font-size: 1.3em;
   letter-spacing: -1px;
   margin-bottom: 0px;
 }
@@ -48,8 +48,8 @@ h4 {
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.3em;
 }
 
 /* header */
@@ -133,7 +133,6 @@ input {
   margin-top:15px;
   float: left;
   width: 200px;
-
 }
 
 .clear-all {
@@ -152,3 +151,5 @@ input {
 .comment {
   margin-bottom: 20px;
 }
+
+input.hide { visibility:hidden; }

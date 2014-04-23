@@ -1,6 +1,6 @@
 <li>
  <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
- <button type="button"><%=topic.rating%></button></h2></span>
+ <button type="button" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span>
 
  
  <span class="timestamp">
@@ -13,6 +13,7 @@
  
  <%end%>
 
- <%= link_to "| Upvote ", rate_path(:id =>topic.id), :method => :post%>
+ <%= link_to "| like ", like_path(:id =>topic.id), :method => :post%>
+  <%= link_to "| dislike ", dislike_path(:id =>topic.id), :method => :post%>
   </span>
  </li>
