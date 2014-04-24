@@ -33,7 +33,7 @@
   <% @activeUsers.each do |activeUser| %>
     <td width="120px"><%= gravatar_for(activeUser,80)%>
     <br>
-    <h4><%= activeUser.name %></h4>
+    <h4><%= activeUser.name.split[0] %></h4>
     </td>
   <%end%>
 

@@ -1,12 +1,11 @@
-	class HomeController < ApplicationController
+class HomeController < ApplicationController
   def index
-  	@user = current_user if signed_in?
+  	
   	@topics = Topic.order(created_at: :desc).paginate(page: params[:page], :per_page =>5)
   	#@goodtopics = Topic.order(rating: :desc).paginate(page: params[:page], :per_page =>5)
   	@goodtopics = Topic.limit(5).order(rating: :desc)
-  	@activeUsers = User.limit(5)
-
-
+  	
+    @activeUsers = User.order("(select count(*) from topics where topics.user_id = users.id) desc").limit(5)
   
   end
 

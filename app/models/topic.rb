@@ -9,8 +9,8 @@ class Topic < ActiveRecord::Base
 	#default_scope -> { order('created_at DESC') }
 	#after_initialize :init
 	validates :user_id, presence: true
-	validates :subject, presence: true, length: {minimum: 5, maximum: 50}
-	validates :body, presence: true, length: {minimum: 10, maximum: 1000}
+	validates :subject, presence: true, length: {maximum: 50}
+	validates :body, presence: true, length: {maximum: 1000}
 	validates :professor_name, length: {maximum:30}
 	# validates :course_number, presence: false, :numericality => { :only_integer => true }
 
