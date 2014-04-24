@@ -1,8 +1,6 @@
 <% provide(:title, @topic.user.name) %>
 
-
 	<h1> <%= @topic.subject %>  <button type="button" class="btn btn-default"><%=@topic.rating%></button> </h1>
-
 	<%if !@topic.course_number.nil? && !@topic.professor_name.empty?%>
 		 <h4>CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
 	 <%elsif !@topic.course_number.nil?%>
@@ -24,12 +22,16 @@
 	 <%= link_to " dislike", dislike_path(:id =>@topic.id), :method => :post%>
 
   </span>
+  <br>
 	<br>
 	<div class="comment">
-	<h2><%= gravatar_for @topic.user%>
-	 <%= @topic.user.name %></h2>
+	<div class="float-left">
+	<%= gravatar_for @topic.user%>
+	 </div>
+	 <div class= "gravatar"> 
+	 <h2><%= @topic.user.name %></h2>
 	 <span class="timestamp"> <%=@topic.user.education_level%></span>
-	
+	</div>
 	<div class="clear-all"></div>
 
 	<p><%= @topic.body %> </p>
@@ -41,9 +43,13 @@
 	<%if @topic.comments.any?%>
 		<%@topic.comments.each do |comment| %>
 			<div class="comment">
-			<h2><%= gravatar_for comment.user%>
-	 		<%= comment.user.name %></h2>
+			<div class="float-left">
+			<%= gravatar_for comment.user%>
+			 </div>
+			  <div class= "gravatar"> 
+	 		<h2><%= comment.user.name %></h2>
 	 		<span class="timestamp"> <%=comment.user.education_level%></span>
+	 		</div>
 			<div class="clear-all"></div>
 			<p><%= comment.body %> </p>
 			<span class="timestamp">
