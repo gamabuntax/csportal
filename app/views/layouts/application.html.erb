@@ -35,13 +35,13 @@
                 <li><%= link_to "Update profile", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                  <%= link_to "Log out", logout_path, method: "delete" %>
                 </li>
                 </ul>
               </li>
               <% else %>
-              <li><%= link_to "Sign up", signup_path %></li>
-               <li><%= link_to "Sign in", signin_path %></li>
+              <li><%= link_to "Register", register_path %></li>
+               <li><%= link_to "Log in", login_path %></li>
              <% end %> 
             </ul>
           </nav>

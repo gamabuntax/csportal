@@ -7,9 +7,9 @@ CSPortal::Application.routes.draw do
   root 'home#index'
 
   match '/about', to: 'home#about', via: 'get'
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/register', to: 'users#new', via: 'get'
+  match '/login', to: 'sessions#new', via: 'get'
+  match '/logout', to: 'sessions#destroy', via: 'delete'
   match '/compose', to: 'topics#new', via: 'get'
   match '/main', to: 'users#show', via: 'get'
   match '/topic', to: 'topics#show', via: 'get'
