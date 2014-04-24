@@ -31,14 +31,10 @@
   <tr>
 <% if @activeUsers.any? %>
   <% @activeUsers.each do |activeUser| %>
-  <div>
- 
-    <td width=20%><div><%= gravatar_for activeUser%></div>
-
-        <div class="clear-all"><%= activeUser.name %></div>
+    <td width="120px"><%= gravatar_for(activeUser,80)%>
+    <br>
+    <h4><%= activeUser.name %></h4>
     </td>
-
-
   <%end%>
 
     </tr>
