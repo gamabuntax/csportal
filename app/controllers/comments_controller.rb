@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 	def update
 	    @comment = Comment.find(params[:id])
 	    if @comment.update_attributes(comment_params)
-	      flash.now[:success] = "Comment updated"
+	      flash[:success] = "Comment updated"
 	      redirect_to topic_path(@comment.topic_id)
 	    else
 	      render 'edit'
@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment.destroy
+		flash[:success] = "Comment has been deleted!"
 		redirect_to topic_path(@comment.topic_id)
 	end
 
