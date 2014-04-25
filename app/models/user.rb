@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
 	before_create :create_remember_token
 	validates :name, presence: true, length: {maximum: 50}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[csu\.]*fullerton\.edu\z/i
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
-	has_secure_password
+	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, :message => ": must use CSU Fullerton email."}, uniqueness: { case_sensitive: false }
+	has_secure_password presense: true
 	validates :password, length: {minimum: 6}
- 	validates :password_confirmation, presence: true
+ 	
  	validates :education_level, presence: true
 
 	def User.new_remember_token
