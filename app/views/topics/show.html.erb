@@ -1,6 +1,6 @@
 <% provide(:title, @topic.user.name) %>
 
-	<h1> <%= @topic.subject %>  <button type="button" disabled="disabled" class="btn btn-default"><%=@topic.rating%></button> </h1>
+	<h1> <%= @topic.subject %>  <button type="button" title ="Number of likes" disabled="disabled" class="btn btn-default"><%=@topic.rating%></button> </h1>
 	<%if !@topic.course_number.nil? && !@topic.professor_name.empty?%>
 		 <h4>CPSC <%=@topic.course_number%> | Professor <%=@topic.professor_name%></h4>
 	 <%elsif !@topic.course_number.nil?%>

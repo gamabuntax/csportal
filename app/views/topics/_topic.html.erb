@@ -1,6 +1,6 @@
 
  <span><h2><%= link_to topic.subject, topic_path(:id => topic.id)%>
- <button type="button" disabled="disabled" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span> 
+ <button type="button" disabled="disabled" title="Number of likes" class="btn btn-default btn-sm"><%=topic.rating%></button></h2></span> 
  <span class="timestamp">
 
 <%if !topic.course_number.nil? && !topic.professor_name.empty?%>
